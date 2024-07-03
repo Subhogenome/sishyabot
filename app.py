@@ -2,9 +2,8 @@ import streamlit as st
 from youtubesearchpython import VideosSearch
 from youtube_transcript_api import YouTubeTranscriptApi, TranscriptsDisabled
 import google.generativeai as genai
-
-st.image("srisri.jpeg",use_column_width=True,)
-GOOGLE_API_KEY=st.secret["GOOGLE_API_KEY"]
+st.image("/Users/subhodeepchatterjee/Downloads/shisya/srisri.jpeg",use_column_width=True,)
+GOOGLE_API_KEY= st.secret["GOOGLE_API_KEY"]
 genai.configure(api_key=GOOGLE_API_KEY)
 model=genai.GenerativeModel("gemini-pro")
 prompt=st.secret["prompt"]
@@ -48,6 +47,7 @@ def extract_transcript_details(url):
     except :
         # Handle case where no transcript is found
         return None
+  
 
 
 def get_transcripts_for_terms(terms, max_transcripts=5):
@@ -102,7 +102,7 @@ if prompt1:
 
 
 
-    response=get_gemini_response(prompt,str(transcripts),prompt1)
+    response=get_gemini_response(prompt,prompt1,str(transcripts))
     message = st.chat_message("assistant")
     message.write((response))
 
