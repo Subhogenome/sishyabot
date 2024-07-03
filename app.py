@@ -91,6 +91,8 @@ st.title("Shishya Bot")
 st.subheader("Carry the knowledge wherever you go")
 import time
 prompt1 = st.chat_input("Ask me a question")
+st.write(prompt1)
+st.write("__________________________________________")
 transcripts = []
 
 if prompt1:
