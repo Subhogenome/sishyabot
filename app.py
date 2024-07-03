@@ -3,7 +3,7 @@ from youtubesearchpython import VideosSearch
 from youtube_transcript_api import YouTubeTranscriptApi, TranscriptsDisabled
 import google.generativeai as genai
 st.image("srisri.jpeg",use_column_width=True,)
-GOOGLE_API_KEY= st.secret["GOOGLE_API_KEY"]
+GOOGLE_API_KEY="AIzaSyAimoYBCAPRKN773YUqBwokefkbt0x7Mps"
 genai.configure(api_key=GOOGLE_API_KEY)
 model=genai.GenerativeModel("gemini-pro")
 prompt="""You are an experineced spritual seeker and a devotee of Gurudev Sri Sri ravi shankar , summarize the follwing content and give suggestions as per conetxt and write a reply to the person """
