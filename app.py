@@ -3,11 +3,10 @@ from youtubesearchpython import VideosSearch
 from youtube_transcript_api import YouTubeTranscriptApi, TranscriptsDisabled
 import google.generativeai as genai
 st.image("srisri.jpeg",use_column_width=True,)
-GOOGLE_API_KEY="AIzaSyAimoYBCAPRKN773YUqBwokefkbt0x7Mps"
+GOOGLE_API_KEY=st.secret["GOOGLE_API_KEY"]
 genai.configure(api_key=GOOGLE_API_KEY)
 model=genai.GenerativeModel("gemini-pro")
-prompt="""You are an experineced spritual seeker and a devotee of Gurudev Sri Sri ravi shankar , summarize the follwing content and give suggestions as per conetxt and write a 500 words reply to the person 
-the reply should always start with Jai Gurudev , you know as Gurudev always says """
+prompt=st.secret["prompt"]
 def get_gemini_response(input,pdf_content,prompt):
     response=model.generate_content([input+pdf_content+prompt])
     return response.text
