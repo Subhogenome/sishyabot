@@ -2,7 +2,7 @@ import streamlit as st
 from youtubesearchpython import VideosSearch
 from youtube_transcript_api import YouTubeTranscriptApi, TranscriptsDisabled
 import google.generativeai as genai
-st.image("/Users/subhodeepchatterjee/Downloads/shisya/srisri.jpeg",use_column_width=True,)
+st.image("srisri.jpeg",use_column_width=True,)
 GOOGLE_API_KEY= st.secret["GOOGLE_API_KEY"]
 genai.configure(api_key=GOOGLE_API_KEY)
 model=genai.GenerativeModel("gemini-pro")
