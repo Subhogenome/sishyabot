@@ -1,3 +1,4 @@
 streamlit
 youtube-search-python
 google-generativeai
+youtube-transcript-api
