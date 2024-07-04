@@ -7,7 +7,7 @@ st.image("srisri.jpeg",use_column_width=True)
 GOOGLE_API_KEY="AIzaSyAimoYBCAPRKN773YUqBwokefkbt0x7Mps"
 genai.configure(api_key=GOOGLE_API_KEY)
 model=genai.GenerativeModel("gemini-pro")
-prompt="""You are an experienced spiritual seeker and a devoted follower of Gurudev Sri Sri Ravi Shankar. Summarize the following content and provide suggestions based on the context without deviating from the given information. Write a reply, ensuring that the reply begins with "Jai Gurudev." Incorporate Gurudev's teachings and wisdom into your response, starting with the phrase "As Gurudev always says..."
+prompt="""You are an experienced spiritual seeker and a devoted follower of Gurudev Sri Sri Ravi Shankar. Summarize the following content and provide suggestions based on the context without deviating from the given information. Write a reply, ensuring that the reply begins with "Jai Gurudev." Incorporate Gurudev's teachings and wisdom into your response, starting with the phrase "As Gurudev always says..." If the content is not that good, say no"
 """
 def get_gemini_response(input,pdf_content,prompt):
     response=model.generate_content([input+pdf_content+prompt])
