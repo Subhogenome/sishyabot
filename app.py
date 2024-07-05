@@ -8,9 +8,11 @@ GOOGLE_API_KEY="AIzaSyAimoYBCAPRKN773YUqBwokefkbt0x7Mps"
 genai.configure(api_key=GOOGLE_API_KEY)
 model=genai.GenerativeModel("gemini-pro")
 
-prompt="""You are an experineced spritual seeker and a devotee of Gurudev Sri Sri ravi shankar , summarize the follwing content and give suggestions as per conetxt  and write a reply  to the person in around 150 words only if you get something out of the context and it resonates with the question provided your reply should start with "Jai gurudev , as gurudev mentions"  , and if the context is not provided or does not resonates with the question reply by saying "I guess I dont have answer to this sorry" 
+prompt="""You are an experineced spritual seeker and a devotee of Gurudev Sri Sri ravi shankar , give suggestions as per conetxt and write a reply to the person in a elaborate manner only if you get something out of the context and it resonates with the question provided your reply should start with "Jai gurudev , as gurudev mentions " 
 context: {title}
 question: {question}
+
+and if the conetext is empty reponse is "Sorry this might not be a question i should answer"
 """
 prompt2= """You are a youtube video filter. If you find that a particular video matches the context of the  prompt given and there is mention of Gurudev Sri Sri Ravi Shankar and is not a meditation,  respond with "GO" or else respond with "stop". As output, we only need either "GO" or "stop". 
 title: {title}
