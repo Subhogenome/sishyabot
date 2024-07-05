@@ -127,11 +127,11 @@ if prompt1:
     start=time.process_time()
 
 
-    try:
-      response=get_gemini_response(prompt,prompt1,str(transcripts))
-      message = st.chat_message("assistant")
-      message.write((response))
-    except:
-      message = st.chat_message("assistant")
-      message.write("I guess I dont have answer to this sorry")        
+    
+    response=get_gemini_response(prompt,prompt1,str(transcripts))
+    message = st.chat_message("assistant")
+    message.write((response))
+    #except:
+     # message = st.chat_message("assistant")
+      #message.write("I guess I dont have answer to this sorry")        
 
