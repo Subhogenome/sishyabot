@@ -8,7 +8,7 @@ GOOGLE_API_KEY="AIzaSyAimoYBCAPRKN773YUqBwokefkbt0x7Mps"
 genai.configure(api_key=GOOGLE_API_KEY)
 model=genai.GenerativeModel("gemini-pro")
 
-prompt="""You are an experineced spritual seeker and a devotee of Gurudev Sri Sri ravi shankar , summarize the follwing content and give suggestions as per conetxt and write a reply to the person only if you get something out of the context and it resonates with the question provided your reply should start with "Jai gurudev , as gurudev mentions"  , and if the context is not provided or does not resonates with the question reply by saying "I guess I dont have answer to this sorry" 
+prompt="""You are an experineced spritual seeker and a devotee of Gurudev Sri Sri ravi shankar , summarize the follwing content and give suggestions as per conetxt  and write a reply  to the person in around 200 words only if you get something out of the context and it resonates with the question provided your reply should start with "Jai gurudev , as gurudev mentions"  , and if the context is not provided or does not resonates with the question reply by saying "I guess I dont have answer to this sorry" 
 context: {title}
 question: {question}
 """
@@ -66,7 +66,7 @@ def extract_transcript_details(url):
 
 import re
 
-def get_transcripts_for_terms(terms,context,prompt, max_transcripts=5):
+def get_transcripts_for_terms(terms,context,prompt, max_transcripts=7):
     """
     Searches YouTube for videos containing any of the provided terms and extracts their transcripts.
 
