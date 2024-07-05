@@ -9,9 +9,23 @@ genai.configure(api_key=GOOGLE_API_KEY)
 model=genai.GenerativeModel("gemini-pro")
 prompt="""You are an experienced spiritual seeker and a devoted follower of Gurudev Sri Sri Ravi Shankar. Summarize the following content and provide suggestions based on the context without deviating from the given information. Write a reply, ensuring that the reply begins with "Jai Gurudev." Incorporate Gurudev's teachings and wisdom into your response, starting with the phrase "As Gurudev always says..." If the content is not that good, say no"
 """
+prompt="""You are an experineced spritual seeker and a devotee of Gurudev Sri Sri ravi shankar , summarize the follwing content and give suggestions as per conetxt and write a reply to the person only if you get something out of the context and it resonates with the question provided your reply should start with "Jai gurudev , as gurudev mentions"  , and if the context is not provided or does not resonates with the question reply by saying "I guess I dont have answer to this sorry" 
+context: {title}
+question: {question}
+"""
+prompt2= """You are a youtube video filter. If you find that a particular video matches the context of the  prompt given and there is mention of Gurudev Sri Sri Ravi Shankar and is not a meditation,  respond with "GO" or else respond with "stop". As output, we only need either "GO" or "stop". 
+title: {title}
+prompt: {prompt}
+"""
 def get_gemini_response(input,pdf_content,prompt):
-    response=model.generate_content([input+pdf_content+prompt])
+    prompt_filled = input.format(title=prompt,question=pdf_content)
+    response=model.generate_content([prompt_filled])
     return response.text
+def get_link(prompt_template, title, context):
+    prompt_filled = prompt_template.format(title=title, prompt=context)
+    response = model.generate_content([prompt_filled])
+    return response.text
+
 def search_multiple_terms(terms):
     """
     Searches YouTube for videos containing any of the provided terms.
@@ -51,8 +65,9 @@ def extract_transcript_details(url):
         return None
   
 
+import re
 
-def get_transcripts_for_terms(terms, max_transcripts=5):
+def get_transcripts_for_terms(terms,context,prompt, max_transcripts=5):
     """
     Searches YouTube for videos containing any of the provided terms and extracts their transcripts.
 
@@ -63,26 +78,32 @@ def get_transcripts_for_terms(terms, max_transcripts=5):
     Returns:
         A list of transcripts for the search results.
     """
-    search_results = search_multiple_terms(terms)
-    transcripts = []
+    search_results = search_multiple_terms(terms)  # Make sure this function is defined elsewhere
 
+    transcripts = []
+    title=[]
+     
     for result in search_results:
-        title = result["title"].lower()
+        title = result["title"]
         url = result["link"]
         
-        # Skip videos related to meditation
-        if "meditation" in title:
-            continue
-
-        transcript = extract_transcript_details(url)
-        if transcript:
-            transcripts.append(transcript)
-        
-        # Stop if we have collected enough transcripts
-        if len(transcripts) >= max_transcripts:
-            break
+       
+        response=get_link(prompt,context,title)
+    
+        # Use regex to check if "Gurudev" is in the title, case insensitive
+        if response == "GO" :
+            transcript = extract_transcript_details(url)  # Make sure this function is defined elsewhere
+            if transcript:
+                transcripts.append(transcript)
+            
+            # Stop if we have collected enough transcripts
+            if len(transcripts) >= max_transcripts:
+                break
+        else:
+            st.write("Skipping video as it does not match criteria")
 
     return transcripts
+
 
 # Streamlit interface
 st.title("Shishya Bot")
