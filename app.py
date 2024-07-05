@@ -68,7 +68,7 @@ def extract_transcript_details(url):
 
 import re
 
-def get_transcripts_for_terms(terms,context,prompt, max_transcripts=7):
+def get_transcripts_for_terms(terms,context,prompt, max_transcripts=5):
     """
     Searches YouTube for videos containing any of the provided terms and extracts their transcripts.
 
