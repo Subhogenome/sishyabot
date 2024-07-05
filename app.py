@@ -7,8 +7,7 @@ st.image("srisri.jpeg",use_column_width=True)
 GOOGLE_API_KEY="AIzaSyAimoYBCAPRKN773YUqBwokefkbt0x7Mps"
 genai.configure(api_key=GOOGLE_API_KEY)
 model=genai.GenerativeModel("gemini-pro")
-prompt="""You are an experienced spiritual seeker and a devoted follower of Gurudev Sri Sri Ravi Shankar. Summarize the following content and provide suggestions based on the context without deviating from the given information. Write a reply, ensuring that the reply begins with "Jai Gurudev." Incorporate Gurudev's teachings and wisdom into your response, starting with the phrase "As Gurudev always says..." If the content is not that good, say no"
-"""
+
 prompt="""You are an experineced spritual seeker and a devotee of Gurudev Sri Sri ravi shankar , summarize the follwing content and give suggestions as per conetxt and write a reply to the person only if you get something out of the context and it resonates with the question provided your reply should start with "Jai gurudev , as gurudev mentions"  , and if the context is not provided or does not resonates with the question reply by saying "I guess I dont have answer to this sorry" 
 context: {title}
 question: {question}
@@ -100,7 +99,7 @@ def get_transcripts_for_terms(terms,context,prompt, max_transcripts=5):
             if len(transcripts) >= max_transcripts:
                 break
         else:
-            ""
+            continue
 
     return transcripts
 
@@ -126,8 +125,11 @@ if prompt1:
     start=time.process_time()
 
 
-
-    response=get_gemini_response(prompt,prompt1,str(transcripts))
-    message = st.chat_message("assistant")
-    message.write((response))
+    try:
+      response=get_gemini_response(prompt,prompt1,str(transcripts))
+      message = st.chat_message("assistant")
+      message.write((response))
+    except:
+      message = st.chat_message("assistant")
+      message.write("I guess I dont have answer to this sorry")        
 
