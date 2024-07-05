@@ -118,7 +118,7 @@ transcripts = []
 
 if prompt1:
     search_terms = ["gurudev", "sri sri ravi shankar", prompt1]
-    transcripts = get_transcripts_for_terms(search_terms)
+    transcripts =get_transcripts_for_terms(search_terms,prompt1,prompt2)
 
     # Print video titles and links
     
