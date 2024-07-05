@@ -100,7 +100,7 @@ def get_transcripts_for_terms(terms,context,prompt, max_transcripts=5):
             if len(transcripts) >= max_transcripts:
                 break
         else:
-            st.write("Skipping video as it does not match criteria")
+            ""
 
     return transcripts
 
