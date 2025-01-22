@@ -27,6 +27,8 @@ def get_link(prompt_template, title, context):
     response = model.generate_content([prompt_filled])
     return response.text
 
+from youtubesearchpython import VideosSearch
+
 def search_multiple_terms(terms):
     """
     Searches YouTube for videos containing any of the provided terms.
@@ -37,9 +39,18 @@ def search_multiple_terms(terms):
     Returns:
         A list of dictionaries containing information about the search results.
     """
+    # Combine the terms using ' | ' to form a query that matches any of the terms
     combined_query = " | ".join(terms)
-    results = VideosSearch(query=combined_query, limit=10)
-    return results.result()["result"]
+    
+    # Perform the search with the combined query
+    search = VideosSearch(query=combined_query, limit=10)
+    
+    # Retrieve the results
+    result = search.result()
+    
+    # Return the list of search results
+    return result.get("result", [])
+
 
 def extract_transcript_details(url):
     """
