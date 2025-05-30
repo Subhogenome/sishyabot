@@ -6,7 +6,7 @@ st.image("srisri.jpeg",use_column_width=True)
 
 GOOGLE_API_KEY="AIzaSyAimoYBCAPRKN773YUqBwokefkbt0x7Mps"
 genai.configure(api_key=GOOGLE_API_KEY)
-model=genai.GenerativeModel("gemini-pro")
+model=genai.GenerativeModel("gemini-2.5-pro-preview-05-06")
 
 prompt="""You are an experineced spritual seeker and a devotee of Gurudev Sri Sri ravi shankar , give suggestions as per conetxt and write a reply to the person in a elaborate manner only if you get something out of the context and it resonates with the question provided your reply should start with "Jai gurudev , as gurudev mentions " 
 context: {title}
