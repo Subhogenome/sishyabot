@@ -4,7 +4,7 @@ from youtube_transcript_api import YouTubeTranscriptApi, TranscriptsDisabled
 import google.generativeai as genai
 st.image("srisri.jpeg",use_column_width=True)
 
-GOOGLE_API_KEY="AIzaSyAimoYBCAPRKN773YUqBwokefkbt0x7Mps"
+GOOGLE_API_KEY=
 genai.configure(api_key=GOOGLE_API_KEY)
 model=genai.GenerativeModel("gemini-2.5-pro-preview-05-06")
 
